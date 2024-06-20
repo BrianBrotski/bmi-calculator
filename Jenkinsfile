@@ -48,7 +48,7 @@ pipeline {
                     """
                 }
                 script {
-                    def qualityGate = waitForQualityGate(abortPipeline:true, credentialsID:SONAR_TOKEN)
+                    def qualityGate = waitForQualityGate()
                     echo "Quality gate status: ${qualityGate.status}"
 
                     if (qualityGate.status != 'Passed'){
