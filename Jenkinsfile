@@ -38,7 +38,7 @@ pipeline {
             steps{
                 echo 'Running SonarQUbe analysis...'
 
-                withSonarQubeEnv('SonarQube'){
+                withSonarQubeEnv('sonarqube'){
                     sh """
                         sonar-scanner \
                         -Dsonar.projectVersion=1.0 \
