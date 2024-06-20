@@ -1,11 +1,6 @@
 pipeline {
-    agent {
-        docker{
-            image 'node:14-alpine'
-            args '-v /workspace:/workspace'
-        }
-    }
-
+    agent any
+        
     environment {
         SONAR_TOKEN = credentials('sonarqube')
     }
@@ -18,8 +13,15 @@ pipeline {
         }
 
         stage('Install Dependencies') {
+            agent {   
+                docker{
+                    image 'node:14-alpine'
+                    args '-v /workspace:/workspace'
+                }
+            }
             steps{
                script {
+                  echo 'Installing Node.JS dependencies...'
                   sh 'npm install'
                }
           }
@@ -30,9 +32,12 @@ pipeline {
                 docker {
                     image 'sonarsource/sonar-scanner-cli:latest'
                     args '-v /workspace:/workspace'
+
                 }
             }
             steps{
+                echo 'Running SonarQUbe analysis...'
+
                 withSonarQubeEnv('SonarQube'){
                     sh """
                         sonar-scanner \
