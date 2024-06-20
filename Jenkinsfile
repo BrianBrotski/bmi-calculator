@@ -11,6 +11,13 @@ pipeline {
                 git 'https://github.com/BrianBrotski/bmi-calculator.git'
             }
         }
+
+        stage('Install'){
+             script {
+                sh 'npm install'
+             }
+        }
+
     }
 
     post{
