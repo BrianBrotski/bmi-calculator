@@ -36,7 +36,7 @@ pipeline {
                 }
             }
             steps{
-                echo 'Running SonarQUbe analysis...'
+                echo 'Running SonarQube analysis...'
 
                 withSonarQubeEnv('sonarqube'){
                     sh """
@@ -49,7 +49,7 @@ pipeline {
                 }
                 script {
                     def qualityGate = waitForQualityGate()
-                    if (qualityGate.status != 'OK'){
+                    if (qualityGate.status != 'Passed'){
                         error "Pipeline aborted due to quality gate failure : ${qualityGate.status}"
                     }
                 }
