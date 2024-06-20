@@ -24,3 +24,4 @@ pipeline {
             echo 'Pipeline failed.'
         }
     }
+}
