@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker{
+            image 'node:14-alpine'
+            args '-v /workspace:/workspace'
+        }
+    }
 
     environment {
         SONAR_TOKEN = credentials('sonarqube')
