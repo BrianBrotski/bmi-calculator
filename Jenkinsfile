@@ -8,7 +8,7 @@ pipeline {
     stages{
         stage('Checkout') {
             steps{
-                git 'https://github.com/brian.brotski/bmi-calculator.git'
+                git 'https://github.com/BrianBrotski/bmi-calculator.git'
             }
         }
     }
